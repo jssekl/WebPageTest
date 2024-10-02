@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web App Practice</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/style.css"> <!-- Your custom CSS file -->
+</head>
+<body>
+    <header>
+        <h1>weppi projekt</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#route-finder" id="route-finder-link">Route Finder</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="home">
+            <h2>Welcome to Our Website</h2>
+            <p>This is a brief introduction to our website.</p>
+        </section>
+        <section id="about">
+            <h2>About Me</h2>
+            <article id="mission">
+                <h3>Studies</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus, perferendis.</p>
+            </article>
+        </section>
+        <aside id="related-topics">
+            <h2>Related Topics</h2>
+            <ul>
+                <li><a href="#">Topic 1</a></li>
+                <li><a href="#">Topic 2</a></li>
+            </ul>
+        </aside>
+        <section id="route-finder">
+            <h2>How long will it take for me to get there?</h2>
+            <form id="route-form">
+                <label for="start">Starting location (fixed):</label>
+                <input type="text" id="start" name="start" value="65.00849587940017,25.494293018734233" readonly>
+                <br>
+                <label for="end">Destination location (your current location):</label>
+                <input type="text" id="end" name="end" placeholder="Latitude,Longitude">
+                <button id="get-location" type="button">Use Current Location</button>
+                <br>
+                <button id="submit" type="submit">Get Route</button>
+            </form>
+            <div id="map"></div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; OAMK 2024</p>
+            <p>Contact: <a href="mailto:t2klje00@students.oamk.fi">t2klje00@students.oamk.fi</a></p>
+            <p>Address: Teuvo Pakkalan katu 11, 90130 Oulu</p>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
