@@ -1,31 +1,25 @@
-// Get form elements
-const form = document.getElementById('route-form');
-const startInput = document.getElementById('start');
-const endInput = document.getElementById('end');
-const getLocationButton = document.getElementById('get-location');
+const routeForm = document.getElementById('route-form');
+const destinationInput = document.getElementById('destination');
+const getLocation = document.getElementById('get-location');
 
-// OSM Map
 const map = L.map('map').setView([65.00849587940017, 25.494293018734233], 13);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
   subdomains: ['a', 'b', 'c']
 }).addTo(map);
 
-
-// Handle form submission
-form.addEventListener('submit', (e) => {
+routeForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  const start = startInput.value.split(',').map(Number);
-  const end = endInput.value.split(',').map(Number);
+  const destination = destinationInput.value.split(',').map(Number);
 
-  if (end.length !== 2 || isNaN(end[0]) || isNaN(end[1])) {
+  if (destination.length !== 2 || isNaN(destination[0]) || isNaN(destination[1])) {
     alert('Please enter a valid destination latitude and longitude.');
     return;
   }
 
-  // Fetch the route
-  fetch(`https://router.project-osrm.org/route/v1/driving/${start[1]},${start[0]};${end[1]},${end[0]}?overview=full&geometries=geojson`)
+  // route fetch
+  fetch(`https://router.project-osrm.org/route/v1/driving/${destination[1]},${destination[0]};${destination[1]},${destination[0]}?overview=full&geometries=geojson`)
     .then(response => response.json())
     .then(data => {
       if (!data.routes || data.routes.length === 0) {
@@ -43,13 +37,12 @@ form.addEventListener('submit', (e) => {
     });
 });
 
-// Get user's current location
-getLocationButton.addEventListener('click', () => {
+// user location
+getLocation.addEventListener('click', () => {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(position => {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-      endInput.value = `${latitude},${longitude}`;
+      const start = [position.coords.latitude, position.coords.longitude];
+      destinationInput.value = `${position.coords.latitude},${position.coords.longitude}`;
     }, error => {
       alert('Unable to retrieve your location.');
     });
@@ -58,38 +51,20 @@ getLocationButton.addEventListener('click', () => {
   }
 });
 
-// Show/hide sections
 document.querySelectorAll('nav a').forEach(link => {
   link.addEventListener('click', function() {
     const target = this.getAttribute('href').substring(1);
-    
-    // Hide all sections
-    document.querySelectorAll('main > section').forEach(section => {
-      section.style.display = 'none';
-    });
 
-    // Show related topics section unless it's the route-finder
-    if (target !== 'route-finder') {
-      document.getElementById('related-topics').style.display = 'block';
-    } else {
-      document.getElementById('related-topics').style.display = 'none';
-    }
+    // Hide all sections
+    document.querySelectorAll('main > section').forEach(section => section.classList.add('hidden'));
+
+    // Show related topics if not route-finder
+    document.getElementById('related-topics').classList.toggle('hidden', target === 'route-finder');
 
     // Show the selected section
-    document.getElementById(target).style.display = 'block';
+    const targetSection = document.getElementById(target);
+    if (targetSection) {
+      targetSection.classList.remove('hidden');
+    }
   });
-});
-
-// Show route-finder section when link is clicked
-document.getElementById('route-finder-link').addEventListener('click', function() {
-  // Hide all sections except for the route-finder
-  document.querySelectorAll('main > section').forEach(section => {
-    section.style.display = 'none';
-  });
-
-  // Hide the related topics section when on Route Finder
-  document.getElementById('related-topics').style.display = 'none';
-
-  // Show the route-finder section
-  document.getElementById('route-finder').style.display = 'block';
 });

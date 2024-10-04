@@ -1,141 +1,136 @@
-/* css/style.css */
-
-/* Global Styles */
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    background-color: #f5f5f5;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  
-  /* Header Styles */
-  
-  header {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 0;
-    text-align: center;
-  }
-  
-  header h1 {
-    margin: 0;
-  }
-  
-  /* Navigation Styles */
-  
-  nav {
-    background-color: #333;
-    color: white;
-  }
-  
-  nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-  }
-  
-  nav ul li {
-    display: inline;
-    float: left;
-    margin: 0 15px;
-  }
-  
-  nav ul li a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  nav ul li a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Main Styles */
-  
-  main {
-    display: flex;
-    justify-content: space-between;
-    flex: 1;
-    padding: 20px;
-  }
-  
-  /* Section Styles */
-  
-  section {
-    margin-bottom: 20px;
-  }
-  
-  section h2 {
-    margin-top: 0;
-  }
-  
-  /* Route Finder Styles */
-  
-  #route-finder {
-    margin-top: 50px;
-  }
-  
-  #route-form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  #route-form input[type="text"] {
-    margin-bottom: 10px;
-  }
-  
-  #route-form button {
-    margin-top: 10px;
-  }
-  
-  #map {
-    height: 50vh;
-    width: 50vw;
-    margin: 0 auto;
-  }
-  
-  /* Footer Styles */
-  
-  footer {
-    background-color: #333;
-    color: white;
-    padding: 10px 0;
-    text-align: center;
-  }
-  
-  footer p {
-    margin: 0;
-  }
-  
-  /* Related Topics Styles */
-  
-  #related-topics {
-    margin-bottom: 20px;
-  }
-  
-  #related-topics h2 {
-    margin-top: 0;
-  }
-  
-  /* Miscellaneous Styles */
-  
-  .footer a {
-    color: var(--text-color);
-    text-decoration: none;
-  }
-  
-  .footer a:hover {
-    text-decoration: underline;
-  }
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+header {
+  background: linear-gradient(to top, #1C6EA4 0%, #144F77 100%);
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+nav {
+  background-color: #333;
+  color: white;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul li {
+  margin: 0 1rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+nav a:hover {
+  color: #ccc;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+section {
+  background-color: white;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.hidden {
+  display: none;
+}
+
+#related-topics {
+  margin-bottom: 2rem;
+}
+
+#related-topics h2 {
+  margin-top: 0;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  margin-top: auto;
+}
+
+footer p {
+  margin: 0;
+}
+
+.footer a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #3e8e41;
+}
+
+input[type="text"] {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+}
+
+input[type="text"]:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#map {
+  height: 400px;
+  width: 100%;
+  margin: 20px auto;
+}
