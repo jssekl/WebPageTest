@@ -10,10 +10,10 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   subdomains: ['a', 'b', 'c']
 }).addTo(map);
 
-// create route
+
 function createRouteManager() {
   let routeLayer = null;
-
+  // removes old and adds new route
   function addRoute(route) {
     if (routeLayer) {
       map.removeLayer(routeLayer);
@@ -38,10 +38,7 @@ async function fetchRouteData(destination) {
   }
 }
 
-async function displayRoute(route) {
-  routeManager.addRoute(route);
-}
-
+// route submit
 routeForm.addEventListener('submit', async (e) => {
   e.preventDefault();
 
@@ -54,7 +51,7 @@ routeForm.addEventListener('submit', async (e) => {
 
   try {
     const route = await fetchRouteData(destination);
-    displayRoute(route);
+    routeManager.addRoute(route);
   } catch (error) {
     console.error(error);
   }
@@ -91,3 +88,11 @@ document.querySelectorAll('nav a').forEach(link => {
     }
   });
 });
+
+// document.addEventListener('DOMContentLoaded', function() {
+//   // Hide all sections on page load
+//   document.querySelectorAll('main > section').forEach(section => section.classList.add('hidden'));
+
+//   // Show the home section
+//   document.getElementById('home').classList.remove('hidden');
+// });
